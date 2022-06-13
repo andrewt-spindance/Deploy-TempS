@@ -10,11 +10,21 @@ import RoomBlock from '@/components/RoomBlockComp.vue'
     <RoomList />
   </main> -->
   
-  <body>
+  <body class="home">
     <div class="container">
-      <div>
+      <div id="home_subtxt">
         <div id="topline">
           Top Three Current Temps
+        </div>
+        <div>
+          <nav id="warm_cold_menu">
+            <label for="touch"><span>Sort</span></label>               
+            <input type="checkbox" id="touch"> 
+            <ul class="slide">
+              <li class="warmcold"><a href="#">Warm</a></li> 
+              <li class="warmcold"><a href="#">Cold</a></li>
+            </ul>
+          </nav> 
         </div>
       </div>
       <div class="circles">

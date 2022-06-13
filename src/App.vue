@@ -1,33 +1,31 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 </script>
-<!-- <RouterLink to="/page2">Page Two</RouterLink> -->
 <template>
  <head>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <header>
     <div class="header">
-      <div id="menu">
+      <!-- <div id="menu">
         <input type="checkbox" id="active">
         <label for="active" class="menu-btn"><span></span></label>
         <label for="active" class="close"></label>
         <div class="wrapper">
           <ul>
-          <!-- <li class="menu-line">001 </li><hr> -->
           <li class="menu-item"><a href="#">Home</a></li>
-          <!-- <li class="menu-line">002 </li><hr> -->
           <li class="menu-item"><a href="#">Current TempS</a></li>
-          <!-- <li class="menu-line">003 </li><hr> -->
           <li class="menu-item"><a href="#">Calendar</a></li>
           </ul>
         </div>
-      </div>
-      
-      <div class="head">
-        <img id="logo" src="./assets/2018.jpg" height="75">
-        <h1 class = "title"> TempS </h1> 
+      </div> -->
+      <!-- <RouterView class="menu"/> -->
+      <div class="top_head">
+        <div class="head">
+          <img id="logo" src="./assets/2018.jpg" height="75">
+          <h1 class = "title"> TempS </h1>
+        </div>
+        <div>Login</div>
       </div>
     </div>
   </header>
@@ -40,6 +38,7 @@ import { RouterLink, RouterView } from 'vue-router'
 @import '@/assets/base.css';
 @import url('http://fonts.cdnfonts.com/css/akrobat');
 
+/* this rule applies to all */
  body{
   padding: 1rem;
 }
@@ -53,6 +52,13 @@ import { RouterLink, RouterView } from 'vue-router'
   display: flex;
   font-family: "Akrobat",Helvetica,Arial,sans-serif;
   margin-left:70px;
+  z-index: 5;
+}
+
+.top_head {
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 #logo{
@@ -61,6 +67,7 @@ import { RouterLink, RouterView } from 'vue-router'
   margin-top: 13px;
 }
 
+/* These are rules for the menu */
 .wrapper{
   position: fixed;
   top: 0;
@@ -235,10 +242,10 @@ input[type="checkbox"]{
   transform: translateX(-100px);
 }
 
+/* These are rules for the circles */
 #topline {
-  text-align: left;
-  margin-top: 20px;
-  /* margin-left: 30px; */
+  /* text-align: left; */
+  /* margin-top: 20px; */
   font-size: 14px;
   font-weight: 700;
   color: #58595B;
@@ -246,12 +253,20 @@ input[type="checkbox"]{
   text-transform: uppercase;
 }
 
-.container{
+#home_subtxt {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+/* .container{
   width: 100%;
   height: 100%;
   position: relative;
-  margin: 20px;
-}
+  margin: 10px;
+  margin-left: auto;
+} */
 
 .circles{
   position: absolute;
@@ -260,7 +275,7 @@ input[type="checkbox"]{
   margin-top: 30px;
   z-index: 2;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .flip-card {
@@ -272,7 +287,6 @@ input[type="checkbox"]{
   font-family: "Akrobat",Helvetica,Arial,sans-serif;
 }
 
-/* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -356,4 +370,60 @@ input[type="checkbox"]{
     font: 12px;
   }
 }
+
+/* CSS for the Sort Warm / Cold chooser */
+li.warmcold a {
+  text-decoration : none; 
+  color : black;
+  font-size: 12px;
+}
+
+li.warmcold{
+  list-style: none;
+}
+
+#warm_cold_menu {
+  width : 100px; 
+  background: white;
+}
+
+#warm_cold_menu span {
+  padding : 5px;
+  background : white; 
+  color : black;
+  font-size : 12px;
+  cursor : pointer;
+  display: block;
+  text-align: right;
+  padding-left: 60px;
+  padding-right: 10px;
+}
+
+#warm_cold_menu span::after {
+  content: "+";
+}
+
+.slide {
+  clear:both;
+  width:100%;
+  height:0px;
+  overflow: hidden;
+  transition: height .4s ease;
+}
+
+.slide li {
+  padding : 10px;
+  text-align: right;
+}
+
+#touch {
+  position: absolute; 
+  opacity: 0; 
+  height: 0px;
+}    
+
+#touch:checked + .slide {
+  height: 100px;
+} 
+
 </style>

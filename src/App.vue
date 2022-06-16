@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </head>
   <header>
     <div class="header">
-      <!-- <div id="menu">
+      <div id="menu">
         <input type="checkbox" id="active">
         <label for="active" class="menu-btn"><span></span></label>
         <label for="active" class="close"></label>
@@ -18,14 +18,16 @@ import { RouterLink, RouterView } from 'vue-router'
           <li class="menu-item"><a href="#">Calendar</a></li>
           </ul>
         </div>
-      </div> -->
+      </div>
       <!-- <RouterView class="menu"/> -->
       <div class="top_head">
-        <div class="head">
-          <img id="logo" src="./assets/2018.jpg" height="75">
-          <h1 class = "title"> TempS </h1>
-        </div>
-        <div>Login</div>
+        <!-- <a href="./App.vue"> -->
+          <div class="head">
+            <img id="logo" src="./assets/2018.jpg" height="75">
+            <h1 class = "title"> TempS </h1>
+          </div>
+        <!-- </a> -->
+        <button id="login">Login</button>
       </div>
     </div>
   </header>
@@ -39,13 +41,10 @@ import { RouterLink, RouterView } from 'vue-router'
 @import url('http://fonts.cdnfonts.com/css/akrobat');
 
 /* this rule applies to all */
- body{
-  padding: 1rem;
-}
-
  #app{
   font-family: "Open Sans",Helvetica,Arial,sans-serif;
   max-width: 1280px;
+  padding: 1rem;
 }
 
 .head {
@@ -58,7 +57,12 @@ import { RouterLink, RouterView } from 'vue-router'
 .top_head {
   display: flex;
   justify-content: space-between;
-  
+}
+
+#login {
+  font-size: 12px;
+  height: 25px;
+  margin-top: 12px;
 }
 
 #logo{
@@ -242,188 +246,7 @@ input[type="checkbox"]{
   transform: translateX(-100px);
 }
 
-/* These are rules for the circles */
-#topline {
-  /* text-align: left; */
-  /* margin-top: 20px; */
-  font-size: 14px;
-  font-weight: 700;
-  color: #58595B;
-  line-height: 1.3;
-  text-transform: uppercase;
+button#login, button {
+  border-radius: 15%;
 }
-
-#home_subtxt {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  z-index: 2;
-}
-
-/* .container{
-  width: 100%;
-  height: 100%;
-  position: relative;
-  margin: 10px;
-  margin-left: auto;
-} */
-
-.circles{
-  position: absolute;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-  z-index: 2;
-  width: 100%;
-  height: auto;
-}
-
-.flip-card {
-  border-radius: 50%;
-  background-color: transparent;
-  width: 220px;
-  height: 220px;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  font-family: "Akrobat",Helvetica,Arial,sans-serif;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-  border-radius: 50%;
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: white;
-  border: solid 12px rgba(209, 211, 212, .5);
-  color: black;
-}
-
-.flip-card-inner .text, .flip-card-back .text{
-  margin-top: 55px;
-  font-size: calc(1.375rem + 1.5vw);
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: #AA1E28;
-  color: white;
-  border: solid 12px rgb(209, 211, 212);
-  transform: rotateY(180deg);
-}
-
-.background {
-  background-color: #AA1E28;
-  z-index: 1;
-  width: 50%;
-  height: 400px;
-  position: absolute;
-  top: -50px;
-  right: 0px;
-}
-
-@media (max-width: 770px){
-  .circle, .flip-card {
-    height: 175px;
-    width: 175px;
-  }
-  .flip-card-inner .text, .flip-card-back .text{
-    /* margin-top: 25px; */
-    font-size: 30px;
-  }
-  .flip-card-back .text .room{
-    font-size: 25px;
-  }
-  .flip-card-back .text{
-    font-size: 20px;
-  }
-}
-@media(max-width: 550px){
-  .circle, .flip-card {
-    height: 150px;
-    width: 150px;
-  }
-  .flip-card-inner .text, .flip-card-back .text{
-    margin-top: 15px;
-  }
-  .flip-card-back .text#test{
-    font: 12px;
-  }
-}
-
-/* CSS for the Sort Warm / Cold chooser */
-li.warmcold a {
-  text-decoration : none; 
-  color : black;
-  font-size: 12px;
-}
-
-li.warmcold{
-  list-style: none;
-}
-
-#warm_cold_menu {
-  width : 100px; 
-  background: white;
-}
-
-#warm_cold_menu span {
-  padding : 5px;
-  background : white; 
-  color : black;
-  font-size : 12px;
-  cursor : pointer;
-  display: block;
-  text-align: right;
-  padding-left: 60px;
-  padding-right: 10px;
-}
-
-#warm_cold_menu span::after {
-  content: "+";
-}
-
-.slide {
-  clear:both;
-  width:100%;
-  height:0px;
-  overflow: hidden;
-  transition: height .4s ease;
-}
-
-.slide li {
-  padding : 10px;
-  text-align: right;
-}
-
-#touch {
-  position: absolute; 
-  opacity: 0; 
-  height: 0px;
-}    
-
-#touch:checked + .slide {
-  height: 100px;
-} 
-
 </style>

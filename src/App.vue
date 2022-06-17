@@ -13,9 +13,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <label for="active" class="close"></label>
         <div class="wrapper">
           <ul>
-          <li class="menu-item"><a href="#">Home</a></li>
-          <li class="menu-item"><a href="#">Current TempS</a></li>
-          <li class="menu-item"><a href="#">Calendar</a></li>
+          <li class="menu-item"><a href="./">Home</a></li>
+          <li class="menu-item"><a href="/ViewAll">Current TempS</a></li>
+          <li class="menu-item"><a href="/Calender">Calendar</a></li>
           </ul>
         </div>
       </div>
@@ -202,7 +202,7 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 .wrapper ul li a:hover{
-  color: #e81a1a;
+  color: #aa1e28;
 }
 
 input[type="checkbox"]{
@@ -241,7 +241,7 @@ input[type="checkbox"]{
 
 #active:checked ~ .wrapper ul li a{
 	transform: none;
-	transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+	transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1);
   transition-delay: .6s;
   transform: translateX(-100px);
 }

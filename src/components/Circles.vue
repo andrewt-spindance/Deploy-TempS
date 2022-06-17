@@ -14,22 +14,21 @@
         <div
           class="circle row"
           v-for="room in meetingRoomColdArr"
-          :key="room.name"
-        >
+          :key="room.name">
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.name }}</h1>
-                  <h4 class="temp">{{ room.temp }}°F</h4>
+                  <h1 class="name">{{ room.chipId }}</h1>
+                  <h4 class="temp">{{ room.payload.temperature }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
-                  <h1 class="room">{{ room.name }}</h1>
-                  <h6 class="temp">Temperature: {{ room.temp }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.hum }}</h6>
-                  <h6 class="time">Time: {{ room.time }}</h6>
+                  <h1 class="room">{{ room.chipId }}</h1>
+                  <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
+                  <h6 class="time">Time: {{ room.payload.readingTime }}</h6>
                 </div>
               </div>
             </div>
@@ -46,15 +45,15 @@
               <div class="flip-card-front">
                 <div class="text">
                   <h1 class="name">{{ room.name }}</h1>
-                  <h4 class="temp">{{ room.temp }}°F</h4>
+                  <h4 class="temp">{{ room.payload.temperature  }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
                   <h1 class="room">{{ room.name }}</h1>
-                  <h6 class="temp">Temperature: {{ room.temp }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.hum }}</h6>
-                  <h6 class="time">Time: {{ room.time }}</h6>
+                  <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
+                  <h6 class="time">Time: {{ room.payload.readingTime }}</h6>
                 </div>
               </div>
             </div>
@@ -82,14 +81,110 @@ export default class MapComponent extends Vue {
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
-    let roomArr = [
-      { name: "The Mitten", temp: 75, hum: 20, time: 10 },
-      { name: "Great Lakes", temp: 73, hum: 20, time: 10 },
-      { name: "Theater", temp: 76, hum: 20, time: 10 },
-      { name: "Better Made", temp: 75, hum: 20, time: 10 },
-      { name: "Big Red", temp: 71, hum: 20, time: 10 },
-      { name: "Break Room", temp: 70, hum: 20, time: 10 },
-    ];
+    let roomArr = 
+    // [
+    //   { name: "The Mitten", temp: 75, hum: 20, time: 10 },
+    //   { name: "Great Lakes", temp: 73, hum: 20, time: 10 },
+    //   { name: "Theater", temp: 76, hum: 20, time: 10 },
+    //   { name: "Better Made", temp: 75, hum: 20, time: 10 },
+    //   { name: "Big Red", temp: 71, hum: 20, time: 10 },
+    //   { name: "Break Room", temp: 70, hum: 20, time: 10 },
+    // ];
+
+    [
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 31,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655386929447
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 31,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655388744000
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 31,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655388757872
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 31,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655388758815
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 32,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655388762598
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 101,
+      "humidity": 31,
+      "readingTime": "06/15/2022, 3:33:11 pm"
+      },
+      "timestamp": 1655388765780
+      },
+      {
+      "chipId": "xxxz",
+      "payload": {
+      "temperature": 321,
+      "humidity": 55,
+      "readingTime": "11/29/1973, 4:33:09 pm"
+      },
+      "timestamp": 1655388801182
+      },
+      {
+      "chipId": "xxxx",
+      "payload": {
+      "temperature": 66,
+      "humidity": 30,
+      "readingTime": "06/17/2022, 2:09:06 pm"
+      },
+      "timestamp": 1655325452781
+      },
+      {
+      "chipId": "test",
+      "payload": {
+      "temperature": 50,
+      "humidity": 50,
+      "readingTime": "06/17/2022, 1:57:16 pm"
+      },
+      "timestamp": 1655488802857
+      },
+      {
+      "chipId": "xxxy",
+      "payload": {
+      "temperature": 100,
+      "humidity": 30,
+      "readingTime": "06/15/2022, 3:33:08 pm"
+      },
+      "timestamp": 1655325966488
+      }
+    ]
+
+
     this.sortTemps(roomArr);
     // if(this.toggle === false){
     //   this.sortTempsWarm();
@@ -102,18 +197,18 @@ export default class MapComponent extends Vue {
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
 
-    this.meetingRoomColdArr.sort((a, b) => a.temp - b.temp).splice(3);
+    this.meetingRoomColdArr.sort((a, b) => a.temperature - b.temperature).splice(3);
 
-    this.meetingRoomHotArr.sort((a, b) => b.temp - a.temp).splice(3);
+    this.meetingRoomHotArr.sort((a, b) => b.temperature - a.temperature).splice(3);
   }
 
   //This function sorts meeting rooms
-  sortTempsWarm(): void {
-    this.meetingRoomDisplay = this.meetingRoomHotArr;
-  }
-  sortTempsCold(): void {
-    this.meetingRoomDisplay = this.meetingRoomColdArr;
-  }
+  // sortTempsWarm(): void {
+  //   this.meetingRoomDisplay = this.meetingRoomHotArr;
+  // }
+  // sortTempsCold(): void {
+  //   this.meetingRoomDisplay = this.meetingRoomColdArr;
+  // }
 }
 </script>
 

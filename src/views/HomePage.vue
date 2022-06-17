@@ -5,8 +5,8 @@ import RoomBlock from '@/components/RoomBlockComp.vue'
 
 <template>
   <circles></circles>
-  <button class="viewall">View All</button>
-  <router-link :to="{ path: 'ViewAll' }"><button>View All</button></router-link>
+  <!-- <button class="viewall">View All</button> -->
+  <router-link :to="{ path: 'ViewAll' }"><button class="viewall">View All</button></router-link>
 </template>
 
 <style>

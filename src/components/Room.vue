@@ -1,7 +1,67 @@
 <template>
   <body class="home">
-    <img id="floor" src="../assets/FloorPlan.png">
-
+    
+    <div class="rooms">
+      <img id="floor" src="../assets/Coloredfloorplan.png">
+      <div class="room" id="mitten">
+        <p class="room_name room_text">The Mitten </p>
+        <p class="room_temp room_text">Temperature: 20°F</p>
+        <p class="room_humid room_text">Humidity: 20%</p>
+      </div>
+      <div class="room" id="greatLakes">
+        <p class="room_name room_text">Great Lakes </p>
+        <p class="room_temp room_text">Temperature: 70°F</p>
+        <p class="room_humid room_text">Humidity: 30%</p>
+      </div>
+      <div class="room" id="isle">
+        <p class="room_name room_text">Isle Royal </p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="bigred">
+        <p class="room_name room_text">Big Red</p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="calvin">
+        <p class="room_name room_text">Calvin</p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="hope">
+        <p class="room_name room_text">Hope</p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="euchre">
+        <p class="room_name room_text">Euchre</p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="sleepingbear">
+        <p class="room_name room_text">Sleeping Bear</p>
+        <p class="room_temp room_text">Temp: 70°F</p>
+        <p class="room_humid room_text">Humid: 30%</p>
+      </div>
+      <div class="room" id="studio">
+        <p class="extra_room_name room_text">Studio</p>
+      </div>
+      <div class="room" id="patio">
+        <p class="extra_room_name room_text">Patio</p>
+      </div>
+      <div class="room" id="wbr">
+        <p class="extra_room_name room_text">Woman's<br> Bathroom</p>
+      </div>
+      <div class="room" id="mbr">
+        <p class="extra_room_name room_text">Men's<br> Bathroom</p>
+      </div>
+      <div class="room" id="break">
+        <p class="extra_room_name room_text">Break Room</p>
+      </div>
+      <div class="room" id="storage">
+        <p class="extra_room_name room_text">Storage</p>
+      </div>
+    </div>
 
     <!-- <div class='room' id="mitten">The Mitten</div> -->
   </body>
@@ -44,27 +104,114 @@ export default class MapComponent extends Vue {
 
     this.meetingRoomHotArr.sort((a, b) => b.temp - a.temp).splice(3);
   }
-
 }
 </script>
 
 <style scoped>
 #floor {
-  height: auto;
-  width: 90%;
-  z-index: 1
+  height: 60vw;
+  width: 90vw;
+  z-index: 1;
+  /* position: relative;  */
 }
 
-/* .room {
-  border: 1px solid black;
+.rooms{
+  height: 60vw;
+  width: 90vw;
+  position: relative; 
   z-index: 2;
+}
+.room {
+  position: absolute;
+  /* border: 1px solid black; */
+  padding: 0px;
+  z-index: 2;
+}
+.room_text {
+  font-size: 1.2vw;
+  margin-bottom: 0px;
+  /* padding: 1vmax; */
+}
+
+.room_name {
+  font-weight: bold;
+  color: #aa1e28;
+}
+.extra_room_name {
+  font-weight: bold;
 }
 
 #mitten{
-   border: 1px solid black;
-   display: inline;
-   left: 73%;
-   top: 50%; 
-   }*/
+   left: 77%;
+   bottom: 58%;
+   /* padding-right: 3.5vmax; */
+   padding-bottom: 1vmax;
+}
 
+#greatLakes {
+  left: 57%;
+  bottom: 83%;
+}
+
+#isle {
+  left: 56.8%;
+  bottom: 43%;
+}
+#isle .room_humid, #isle .room_temp{
+  font-size: 1vw;
+}
+
+#bigred {
+  left: 44%;
+  bottom: 83%;
+}
+#calvin{
+  left: 29.2%;
+  bottom: 61%;
+}
+
+#calvin .room_text, #hope .room_text{
+  font-size: .8vw;
+}
+
+#hope {
+  left: 29.2%;
+  bottom: 67.5%;
+}
+#euchre {
+  left: 29.2%;
+  bottom: 78%;
+}
+
+#euchre .room_text {
+  font-size: 1vw;
+}
+#sleepingbear {
+  left: 18%;
+  bottom: 83%;
+}
+#studio {
+  left: 7%;
+  bottom: 47%;
+}
+#patio {
+  left: 32%;
+  bottom: 24%;
+}
+#wbr{
+  left: 44%;
+  bottom: 63%;
+}
+#mbr{
+  left: 62%;
+  bottom: 63%;
+}
+#break{
+  left: 70.5%;
+  bottom: 89%;
+}
+#storage{
+  left: 29.2%;
+  bottom: 89%;
+}
 </style>

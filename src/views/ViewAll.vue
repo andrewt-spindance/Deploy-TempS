@@ -5,11 +5,11 @@ import RoomView from '@/components/Room.vue'
 </script>
 
 <template>
-  <!-- <button class="toggle" @click="isShow = !isShow">
-    {{ isShow ? "Table" : "Room" }}
-  </button> -->
+  <button class="toggle" @click="isTable = !isTable">
+    {{ isTable ? "Warm" : "Cold" }}
+  </button>
 
-  <RoomTable></RoomTable>
+  <RoomView></RoomView>
 
   <!-- <div class="container">
     <RoomView></RoomView>
@@ -27,16 +27,18 @@ import RoomView from '@/components/Room.vue'
 </template>
 
 <!-- <script setup lang="ts">
-
-  export default class MapComponent extends Vue {
-    isShow = false;
-
-
+  import RoomTable from '@/components/RoomTableComp.vue'
+  import RoomView from '@/components/Room.vue'
+  import { Vue } from "vue-property-decorator";
+  
+  export default {
+    isShow = false,
+    isTable = true
   }
 </script> -->
 
 <style>
-
+/* 
 .container {
   position: relative;
   text-align: center;
@@ -83,5 +85,5 @@ import RoomView from '@/components/Room.vue'
     display: inline;
     border: black solid 1px;
     position: absolute;
-  } 
+  }  */
 </style>

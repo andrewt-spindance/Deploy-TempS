@@ -25,10 +25,10 @@
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
-                  <h1 class="room">{{ room.chipId }}</h1>
+                  <!-- <h1 class="room">{{ room.chipId }}</h1> -->
                   <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
                   <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
-                  <h6 class="time">Time: {{ room.payload.readingTime }}</h6>
+                  <h6 class="time">{{ room.payload.readingTime }}</h6>
                 </div>
               </div>
             </div>
@@ -44,16 +44,16 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.name }}</h1>
+                  <h1 class="name">{{ room.chipId }}</h1>
                   <h4 class="temp">{{ room.payload.temperature  }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
-                  <h1 class="room">{{ room.name }}</h1>
+                  <!-- <h1 class="room">{{ room.chipid }}</h1> -->
                   <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
                   <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
-                  <h6 class="time">Time: {{ room.payload.readingTime }}</h6>
+                  <h6 class="time">{{ room.payload.readingTime }}</h6>
                 </div>
               </div>
             </div>
@@ -81,21 +81,12 @@ export default class MapComponent extends Vue {
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
-    let roomArr = 
-    // [
-    //   { name: "The Mitten", temp: 75, hum: 20, time: 10 },
-    //   { name: "Great Lakes", temp: 73, hum: 20, time: 10 },
-    //   { name: "Theater", temp: 76, hum: 20, time: 10 },
-    //   { name: "Better Made", temp: 75, hum: 20, time: 10 },
-    //   { name: "Big Red", temp: 71, hum: 20, time: 10 },
-    //   { name: "Break Room", temp: 70, hum: 20, time: 10 },
-    // ];
-
+    let roomArr =
     [
       {
       "chipId": "xxxz",
       "payload": {
-      "temperature": 101,
+      "temperature": 80,
       "humidity": 31,
       "readingTime": "06/15/2022, 3:33:11 pm"
       },
@@ -186,29 +177,18 @@ export default class MapComponent extends Vue {
 
 
     this.sortTemps(roomArr);
-    // if(this.toggle === false){
-    //   this.sortTempsWarm();
-    // }else{
-    //   this.sortTempsCold();
-    // }
+  
   }
 
   sortTemps(roomArr: room[]): void {
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
 
-    this.meetingRoomColdArr.sort((a, b) => a.temperature - b.temperature).splice(3);
+    this.meetingRoomColdArr.sort((a, b) => a.payload.temperature - b.payload.temperature).splice(3);
 
-    this.meetingRoomHotArr.sort((a, b) => b.temperature - a.temperature).splice(3);
+    this.meetingRoomHotArr.sort((a, b) => b.payload.temperature - a.payload.temperature).splice(3);
   }
 
-  //This function sorts meeting rooms
-  // sortTempsWarm(): void {
-  //   this.meetingRoomDisplay = this.meetingRoomHotArr;
-  // }
-  // sortTempsCold(): void {
-  //   this.meetingRoomDisplay = this.meetingRoomColdArr;
-  // }
 }
 </script>
 
@@ -219,8 +199,6 @@ body {
 }
 
 #topline {
-  /* text-align: left; */
-  /* margin-top: 20px; */
   font-size: 14px;
   font-weight: 700;
   color: #58595B;

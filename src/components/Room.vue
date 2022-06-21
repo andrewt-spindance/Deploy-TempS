@@ -3,46 +3,12 @@
     
     <div class="rooms">
       <img id="floor" src="../assets/Coloredfloorplan.png">
-      <div class="room" id="mitten">
-        <p class="room_name room_text">The Mitten </p>
-        <p class="room_temp room_text">Temperature: 20°F</p>
-        <p class="room_humid room_text">Humidity: 20%</p>
+      <div v-for="room in meetingRooms" :class="[room.chipId.S, 'hover', 'room']" :key="room.chipId.S">
+        <p class="room_name room_text">{{room.chipId.S}} </p>
+        <p class="room_temp room_text" >Temp: {{room.payload.M.temperature.N}}°F</p>
+        <p class="room_humid room_text">Humidity: {{room.payload.M.humidity.N}}%</p>
       </div>
-      <div class="room" id="greatLakes">
-        <p class="room_name room_text">Great Lakes </p>
-        <p class="room_temp room_text">Temperature: 70°F</p>
-        <p class="room_humid room_text">Humidity: 30%</p>
-      </div>
-      <div class="room" id="isle">
-        <p class="room_name room_text">Isle Royal </p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
-      <div class="room" id="bigred">
-        <p class="room_name room_text">Big Red</p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
-      <div class="room" id="calvin">
-        <p class="room_name room_text">Calvin</p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
-      <div class="room" id="hope">
-        <p class="room_name room_text">Hope</p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
-      <div class="room" id="euchre">
-        <p class="room_name room_text">Euchre</p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
-      <div class="room" id="sleepingbear">
-        <p class="room_name room_text">Sleeping Bear</p>
-        <p class="room_temp room_text">Temp: 70°F</p>
-        <p class="room_humid room_text">Humid: 30%</p>
-      </div>
+
       <div class="room" id="studio">
         <p class="extra_room_name room_text">Studio</p>
       </div>
@@ -61,6 +27,30 @@
       <div class="room" id="storage">
         <p class="extra_room_name room_text">Storage</p>
       </div>
+      <div class="room" id="mikesoffice">
+        <p class="extra_room_name room_text">Mike's Office</p>
+      </div>
+      <div class="room" id="theater">
+        <p class="extra_room_name room_text">Theater</p>
+      </div>
+      <div class="room" id="server">
+        <p class="extra_room_name room_text">Server Room</p>
+      </div>
+      <div class="room" id="elevator">
+        <p class="extra_room_name room_text">Elevator</p>
+      </div>
+      <div class="room" id="storage">
+        <p class="extra_room_name room_text">Storage</p>
+      </div>
+      <div class="room" id="engineering">
+        <p class="extra_room_name room_text">Engineering</p>
+      </div>
+      <div class="room" id="lab">
+        <p class="extra_room_name room_text">Lab</p>
+      </div>
+      <div class="room" id="supply">
+        <p class="extra_room_name room_text">Supply Closet</p>
+      </div>
     </div>
 
     <!-- <div class='room' id="mitten">The Mitten</div> -->
@@ -69,24 +59,184 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
+import type  Room from '../datatypes';
+
 
 export default class MapComponent extends Vue {
+  
   [x: string]: any;
 
-  meetingRoomColdArr: Array<room> = [];
-  meetingRoomHotArr: Array<room> = [];
+  meetingRooms: Array<Room> = [];
   // meetingRoomDisplay: Array<room> = [];
   isShow = false;
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
-    let roomArr = [
-      { name: "The Mitten", temp: 75, hum: 20, time: 10 },
-      { name: "Great Lakes", temp: 73, hum: 20, time: 10 },
-      { name: "Theater", temp: 76, hum: 20, time: 10 },
-      { name: "Better Made", temp: 75, hum: 20, time: 10 },
-      { name: "Big Red", temp: 71, hum: 20, time: 10 },
-      { name: "Break Room", temp: 70, hum: 20, time: 10 },
+    let roomArr = 
+    [
+      {
+        "chipId":{
+          "S": "Big Red"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "74"
+            },
+              "humidity": {
+              "N": "0.6"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },
+      {
+        "chipId": {
+          "S": "Great Lakes"
+        },
+        "payload": {
+          "M": {
+            "temperature": {
+              "N": "64"
+            },
+              "humidity": {
+              "N": "24"
+            },
+              "readingTime": {
+              "S": "2022-05-18T19:33:11.000Z"
+            }
+          }
+        },
+          "timestamp": {
+          "N": "9001"
+        }
+      },
+      {
+        "chipId":{
+          "S": "Hope"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "80"
+            },
+              "humidity": {
+              "N": "30"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "The Mitten"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "76"
+            },
+              "humidity": {
+              "N": "10"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Isle Royale"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "84"
+            },
+              "humidity": {
+              "N": "40"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Calvin"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "50"
+            },
+              "humidity": {
+              "N": "30"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Euchre"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "47"
+            },
+              "humidity": {
+              "N": "80"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Sleeping Bear"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "68"
+            },
+              "humidity": {
+              "N": "86"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },
     ];
     this.sortTemps(roomArr);
     // if(this.toggle === false){
@@ -96,13 +246,13 @@ export default class MapComponent extends Vue {
     // }
   }
 
-  sortTemps(roomArr: room[]): void {
-    this.meetingRoomColdArr = [...roomArr];
-    this.meetingRoomHotArr = [...roomArr];
+  sortTemps(roomArr: Room[]): void {
+    this.meetingRooms = [...roomArr];
+    // this.meetingRoomHotArr = [...roomArr];
 
-    this.meetingRoomColdArr.sort((a, b) => a.temp - b.temp).splice(3);
+    // this.meetingRoomColdArr.sort((a, b) => a.temp - b.temp).splice(3);
 
-    this.meetingRoomHotArr.sort((a, b) => b.temp - a.temp).splice(3);
+    // this.meetingRoomHotArr.sort((a, b) => b.temp - a.temp).splice(3);
   }
 }
 </script>
@@ -114,7 +264,6 @@ export default class MapComponent extends Vue {
   z-index: 1;
   /* position: relative;  */
 }
-
 .rooms{
   height: 60vw;
   width: 90vw;
@@ -123,16 +272,13 @@ export default class MapComponent extends Vue {
 }
 .room {
   position: absolute;
-  /* border: 1px solid black; */
   padding: 0px;
   z-index: 2;
 }
 .room_text {
   font-size: 1.2vw;
   margin-bottom: 0px;
-  /* padding: 1vmax; */
 }
-
 .room_name {
   font-weight: bold;
   color: #aa1e28;
@@ -140,53 +286,48 @@ export default class MapComponent extends Vue {
 .extra_room_name {
   font-weight: bold;
 }
-
-#mitten{
-   left: 77%;
-   bottom: 58%;
-   /* padding-right: 3.5vmax; */
-   padding-bottom: 1vmax;
+.room.hover:hover .room_text{
+  font-weight: bold;
+  /* background-color: pink; */
 }
-
-#greatLakes {
+.The.Mitten{
+   left: 77%;
+   bottom: 60%;
+}
+.Great.Lakes {
   left: 57%;
   bottom: 83%;
 }
-
-#isle {
-  left: 56.8%;
-  bottom: 43%;
+.Isle.Royale {
+  left: 56.7%;
+  bottom: 44%;
 }
-#isle .room_humid, #isle .room_temp{
-  font-size: 1vw;
+.Isle .room_humid, .Isle .room_temp{
+  font-size: .9vw;
 }
-
-#bigred {
+.Big.Red {
   left: 44%;
   bottom: 83%;
 }
-#calvin{
+.Calvin{
   left: 29.2%;
   bottom: 61%;
 }
-
-#calvin .room_text, #hope .room_text{
+.Calvin .room_text, .Hope .room_text{
   font-size: .8vw;
 }
-
-#hope {
+.Hope {
   left: 29.2%;
   bottom: 67.5%;
 }
-#euchre {
+.Euchre {
   left: 29.2%;
-  bottom: 78%;
+  bottom: 78.5%;
 }
-
-#euchre .room_text {
-  font-size: 1vw;
+.Euchre .room_temp, .Euchre .room_humid {
+  font-size: .9vw;
 }
-#sleepingbear {
+.Sleeping {
   left: 18%;
   bottom: 83%;
 }
@@ -212,6 +353,38 @@ export default class MapComponent extends Vue {
 }
 #storage{
   left: 29.2%;
+  bottom: 89%;
+}
+#mikesoffice {
+  left: 7%;
+  bottom: 89%;
+}
+#theater {
+  left: 7%;
+  bottom: 77%;
+}
+#server {
+  left: 47.5%;
+  bottom: 75%;
+}
+#elevator {
+  left: 43.5%;
+  bottom: 55%;
+}
+#storage {
+  left: 54%;
+  bottom: 66%;
+}
+#engineering {
+  left: 53%;
+  bottom: 35%;
+}
+#lab {
+  left: 64.5%;
+  bottom: 48.5%;
+}
+#supply {
+  left: 29.5%;
   bottom: 89%;
 }
 </style>

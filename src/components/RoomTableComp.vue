@@ -6,7 +6,7 @@
         <th>Time</th>
         <th>Humidity</th>
         <th>Temperature</th>
-        <tr v-for="room in meetingRoomArr" :key="room.chipId"><td>{{room.chipId}}</td><td>{{room.payload.readingTime}}</td><td>{{room.payload.humidity}}</td><td>{{room.payload.temperature}}°F</td></tr>
+        <tr v-for="room in meetingRoomArr" :key="room.chipId.S"><td>{{room.chipId.S}}</td><td>{{room.payload.M.readingTime.S}}</td><td>{{room.payload.M.humidity.N}}</td><td>{{room.payload.M.temperature.N}}°F</td></tr>
       </table>
      <slot></slot>
     </div>
@@ -14,30 +14,192 @@
 </template>
 
 <script lang="ts">
-import type { room }  from '../datatypes';
+import type  Room from '../datatypes';
 import { Vue } from "vue-property-decorator";
 
 export default class MapComponent extends Vue {
 
-  meetingRoomArr: Array<room> = [];
+  meetingRoomArr: Array<Room> = [];
   isShow = false;
 
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
     let roomArr = 
-    // [{name: "The Mitten", hum: 20, temp: 75},{name: "Great Lakes", hum: 20, temp: 73}, {name: "Theater", hum: 20, temp: 76}, {name: "Better Made", hum: 20, temp: 75},{name: "Big Red", hum: 20, temp: 71}, {name: "Break Room", hum: 20, temp: 70}]
-    [{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 31,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655386929447},{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 31,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655388744000},{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 31,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655388757872},{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 31,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655388758815},{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 32,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655388762598},{"chipId": "xxxz","payload": {"temperature": 101,"humidity": 31,"readingTime": "06/15/2022, 3:33:11 pm"},"timestamp": 1655388765780},{"chipId": "xxxz","payload": {"temperature": 321,"humidity": 55,"readingTime": "11/29/1973, 4:33:09 pm"},"timestamp": 1655388801182},{"chipId": "xxxx","payload": {"temperature": 66,"humidity": 30,"readingTime": "06/17/2022, 2:09:06 pm"},"timestamp": 1655325452781},{"chipId": "test","payload": {"temperature": 50,"humidity": 50,"readingTime": "06/17/2022, 1:57:16 pm"},"timestamp": 1655488802857},{"chipId": "xxxy","payload": {"temperature": 100,"humidity": 30,"readingTime": "06/15/2022, 3:33:08 pm"},"timestamp": 1655325966488}]
-    this.checkRooms(roomArr);
+    [
+      {
+        "chipId":{
+          "S": "Big Red"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "74"
+            },
+              "humidity": {
+              "N": "0.6"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },
+      {
+        "chipId": {
+          "S": "Great Lakes"
+        },
+        "payload": {
+          "M": {
+            "temperature": {
+              "N": "64"
+            },
+              "humidity": {
+              "N": "24"
+            },
+              "readingTime": {
+              "S": "2022-05-18T19:33:11.000Z"
+            }
+          }
+        },
+          "timestamp": {
+          "N": "9001"
+        }
+      },
+      {
+        "chipId":{
+          "S": "Hope"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "80"
+            },
+              "humidity": {
+              "N": "30"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "The Mitten"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "76"
+            },
+              "humidity": {
+              "N": "10"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Isle Royale"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "84"
+            },
+              "humidity": {
+              "N": "40"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Calvin"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "50"
+            },
+              "humidity": {
+              "N": "30"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Euchre"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "47"
+            },
+              "humidity": {
+              "N": "80"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },{
+        "chipId":{
+          "S": "Sleeping Bear"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "68"
+            },
+              "humidity": {
+              "N": "86"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
+      },
+    ];this.checkRooms(roomArr);
   }
 
   //This function sorts meeting rooms
-  checkRooms(roomArr: room[]): void {
+  checkRooms(roomArr: Room[]): void {
     
     // this will become code to check goodle calender.
     this.meetingRoomArr = [...roomArr];
     
-    this.meetingRoomArr.sort((a,b) => a.payload.temperature - b.payload.temperature);
+    this.meetingRoomArr.sort((a,b) => parseInt(a.payload.M.temperature.N) - parseInt(b.payload.M.temperature.N));
   }
 }
 </script>

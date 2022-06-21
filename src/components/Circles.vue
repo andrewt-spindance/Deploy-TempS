@@ -14,21 +14,21 @@
         <div
           class="circle row"
           v-for="room in meetingRoomColdArr"
-          :key="room.name">
+          :key="room.chipId.S">
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.chipId }}</h1>
-                  <h4 class="temp">{{ room.payload.temperature }}°F</h4>
+                  <h1 class="name">{{ room.chipId.S }}</h1>
+                  <h4 class="temp">{{ room.payload.M.temperature.N }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
                   <!-- <h1 class="room">{{ room.chipId }}</h1> -->
-                  <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
-                  <h6 class="time">{{ room.payload.readingTime }}</h6>
+                  <h6 class="temp">Temperature: {{ room.payload.M.temperature.N }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.payload.M.humidity.N }}%</h6>
+                  <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
                 </div>
               </div>
             </div>
@@ -39,21 +39,21 @@
         <div
           class="circle row"
           v-for="room in meetingRoomHotArr"
-          :key="room.name">
+          :key="room.chipId.S">
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.chipId }}</h1>
-                  <h4 class="temp">{{ room.payload.temperature  }}°F</h4>
+                  <h1 class="name">{{ room.chipId.S }}</h1>
+                  <h4 class="temp">{{ room.payload.M.temperature.N  }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
                   <!-- <h1 class="room">{{ room.chipid }}</h1> -->
-                  <h6 class="temp">Temperature: {{ room.payload.temperature }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.payload.humidity }}</h6>
-                  <h6 class="time">{{ room.payload.readingTime }}</h6>
+                  <h6 class="temp">Temperature: {{ room.payload.M.temperature.N }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.payload.M.humidity.N}}%</h6>
+                  <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
                 </div>
               </div>
             </div>
@@ -70,12 +70,13 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
+import type  Room from '../datatypes';
 
 export default class MapComponent extends Vue {
   [x: string]: any;
 
-  meetingRoomColdArr: Array<room> = [];
-  meetingRoomHotArr: Array<room> = [];
+  meetingRoomColdArr: Array<Room> = [];
+  meetingRoomHotArr: Array<Room> = [];
   // meetingRoomDisplay: Array<room> = [];
   isShow = false;
 
@@ -84,95 +85,68 @@ export default class MapComponent extends Vue {
     let roomArr =
     [
       {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 80,
-      "humidity": 31,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655386929447
-      },
-      {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 101,
-      "humidity": 31,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655388744000
-      },
-      {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 101,
-      "humidity": 31,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655388757872
+        "chipId":{
+          "S": "Big Red"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "74"
+            },
+              "humidity": {
+              "N": "0.6"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
       },
       {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 101,
-      "humidity": 31,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655388758815
-      },
-      {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 101,
-      "humidity": 32,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655388762598
-      },
-      {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 101,
-      "humidity": 31,
-      "readingTime": "06/15/2022, 3:33:11 pm"
-      },
-      "timestamp": 1655388765780
+        "chipId": {
+          "S": "Great Lakes"
+        },
+        "payload": {
+          "M": {
+            "temperature": {
+              "N": "64"
+            },
+              "humidity": {
+              "N": "24"
+            },
+              "readingTime": {
+              "S": "2022-05-18T19:33:11.000Z"
+            }
+          }
+        },
+          "timestamp": {
+          "N": "9001"
+        }
       },
       {
-      "chipId": "xxxz",
-      "payload": {
-      "temperature": 321,
-      "humidity": 55,
-      "readingTime": "11/29/1973, 4:33:09 pm"
+        "chipId":{
+          "S": "Hope"
+        },
+        "payload":{
+          "M": {
+            "temperature": {
+              "N": "80"
+            },
+              "humidity": {
+              "N": "30"
+            },
+              "readingTime": {
+              "S": "2022-06-20T15:03:19.000Z"
+            }
+          }
+        },
+        "timestamp": {
+          "N": "1655749562915"
+        }
       },
-      "timestamp": 1655388801182
-      },
-      {
-      "chipId": "xxxx",
-      "payload": {
-      "temperature": 66,
-      "humidity": 30,
-      "readingTime": "06/17/2022, 2:09:06 pm"
-      },
-      "timestamp": 1655325452781
-      },
-      {
-      "chipId": "test",
-      "payload": {
-      "temperature": 50,
-      "humidity": 50,
-      "readingTime": "06/17/2022, 1:57:16 pm"
-      },
-      "timestamp": 1655488802857
-      },
-      {
-      "chipId": "xxxy",
-      "payload": {
-      "temperature": 100,
-      "humidity": 30,
-      "readingTime": "06/15/2022, 3:33:08 pm"
-      },
-      "timestamp": 1655325966488
-      }
     ]
 
 
@@ -180,13 +154,13 @@ export default class MapComponent extends Vue {
   
   }
 
-  sortTemps(roomArr: room[]): void {
+  sortTemps(roomArr: Room[]): void {
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
 
-    this.meetingRoomColdArr.sort((a, b) => a.payload.temperature - b.payload.temperature).splice(3);
+    this.meetingRoomColdArr.sort((a, b) => parseInt(a.payload.M.temperature.N) - parseInt(b.payload.M.temperature.N)).splice(3);
 
-    this.meetingRoomHotArr.sort((a, b) => b.payload.temperature - a.payload.temperature).splice(3);
+    this.meetingRoomHotArr.sort((a, b) => parseInt(b.payload.M.temperature.N) - parseInt(a.payload.M.temperature.N)).splice(3);
   }
 
 }

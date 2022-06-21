@@ -1,14 +1,14 @@
-<template>
+<!-- <template>
   <div class="box">
     <h2>Coldest Rooms</h2>
-    <div class="box1" v-for="room in meetingRoomColdArr" :key="room.name">
+    <div class="box1" v-for="room in meetingRoomColdArr" :key="room.chipId.S">
      <label>
-      <a>{{room.temp}}°F</a>
-      <a>{{room.name}}</a>
+      <a>{{room.payload.M.temperature}}°F</a>
+      <a>{{room.chipId.S}}</a>
      </label>
     </div>
     <h2>Hottest Rooms</h2>
-    <div class="box2" v-for="room in meetingRoomHotArr" :key="room.name">
+    <div class="box2" v-for="room in meetingRoomHotArr" :key="room.chipId.S">
      <label>
       <a>{{room.temp}}°F</a>
       <a>{{room.name}}</a>
@@ -20,11 +20,12 @@
 <script lang="ts">
 
 import { Vue } from "vue-property-decorator";
+import type  Room from '../datatypes';
 
 export default class MapComponent extends Vue {
 
-  meetingRoomColdArr: Array<room> = [];
-  meetingRoomHotArr: Array<room> = [];
+  meetingRoomColdArr: Array<Room> = [];
+  meetingRoomHotArr: Array<Room> = [];
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
@@ -33,7 +34,7 @@ export default class MapComponent extends Vue {
   }
 
   //This function sorts meeting rooms
-  sortTemps(roomArr: room[]): void {
+  sortTemps(roomArr: Room[]): void {
     
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
@@ -100,4 +101,4 @@ h2{
     font-size: larger;
   }
 
-</style>
+</style> -->

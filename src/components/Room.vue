@@ -2,7 +2,7 @@
   <body class="home">
     
     <div class="rooms">
-      <img id="floor" src="../assets/Coloredfloorplan.png">
+      <img id="floor" src="../assets/coloredFloorPlan.png">
       <div v-for="room in meetingRooms" :class="[room.chipId.S, 'hover', 'room']" :key="room.chipId.S">
         <p class="room_name room_text">{{room.chipId.S}} </p>
         <p class="room_temp room_text" >Temp: {{room.payload.M.temperature.N}}°F</p>

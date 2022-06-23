@@ -6,7 +6,7 @@
         <th>Time</th>
         <th>Humidity</th>
         <th>Temperature</th>
-        <tr v-for="room in meetingRoomArr" :key="room.chipId.S"><td>{{room.chipId.S}}</td><td>{{room.payload.M.readingTime.S}}</td><td>{{room.payload.M.humidity.N}}</td><td>{{room.payload.M.temperature.N}}°F</td></tr>
+        <tr v-for="room in meetingRoomArr" :key="room.chipId.S"><td>{{room.chipId.S}}</td><td>{{room.payload.M.readingTime.S}}</td><td>{{room.payload.M.humidity.N}}%</td><td>{{room.payload.M.temperature.N}}°F</td></tr>
       </table>
      <slot></slot>
     </div>
@@ -169,28 +169,9 @@ export default class MapComponent extends Vue {
         "timestamp": {
           "N": "1655749562915"
         }
-      },{
-        "chipId":{
-          "S": "Sleeping Bear"
-        },
-        "payload":{
-          "M": {
-            "temperature": {
-              "N": "68"
-            },
-              "humidity": {
-              "N": "86"
-            },
-              "readingTime": {
-              "S": "2022-06-20T15:03:19.000Z"
-            }
-          }
-        },
-        "timestamp": {
-          "N": "1655749562915"
-        }
-      },
-    ];this.checkRooms(roomArr);
+      },{"chipId":{"S": "Sleeping Bear"},"payload":{"M": {"temperature": {"N": "68"},"humidity": {"N": "86"}, "readingTime": {"S": "2022-06-20T15:03:19.000Z"}}},"timestamp": {"N": "1655749562915"}},
+    ];
+    this.checkRooms(roomArr);
   }
 
   //This function sorts meeting rooms

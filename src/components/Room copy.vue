@@ -1,6 +1,33 @@
 <template>
   <body class="home">
-    <div class="rooms">
+    <div class="button">
+      <button class="toggle" @click="isShow = !isShow">
+        {{ isShow ? "Table" : "Room" }}
+      </button>
+    </div>
+
+    <div class="tables item" v-show="!isShow">
+      <div class="details">
+        <table class="table">
+          <th>Name</th>
+          <th>Time</th>
+          <th>Humidity</th>
+          <th>Temperature</th>
+          <tr v-for="room in meetingRooms" :key="room.chipId.S">
+            <td>{{ room.chipId.S }}</td>
+            <td>{{ room.payload.M.readingTime.S }}</td>
+            <td>{{ room.payload.M.humidity.N }}%</td>
+            <td>{{ room.payload.M.temperature.N }}°F</td>
+          </tr>
+        </table>
+        <slot></slot>
+      </div>
+      <div class="behind_container">
+        <div class="background"></div>
+      </div>
+    </div>
+
+    <div class="rooms" v-show="isShow">
       <img id="floor" src="../assets/coloredfloorplan.png" />
       <div
         v-for="room in meetingRooms"
@@ -85,20 +112,12 @@ export default class MapComponent extends Vue {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
     let roomArr = [
       {
-        chipId: {
-          S: "Big Red",
-        },
+        chipId: { S: "Big Red" },
         payload: {
           M: {
-            temperature: {
-              N: "74",
-            },
-            humidity: {
-              N: "0.6",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
+            temperature: { N: "74" },
+            humidity: { N: "0.6" },
+            readingTime: { S: "2022-06-20T15:03:19.000Z" },
           },
         },
         timestamp: {
@@ -263,6 +282,20 @@ export default class MapComponent extends Vue {
 </script>
 
 <style scoped>
+button {
+  border-radius: 15%;
+  font-size: 12px;
+  height: 25px;
+  margin-top: 12px;
+  /* float: right; */
+}
+
+.button {
+  /* display: flex; */
+  text-align: right;
+  z-index: 2;
+}
+
 #floor {
   height: 60vw;
   width: 90vw;
@@ -283,17 +316,17 @@ export default class MapComponent extends Vue {
 .room_text {
   font-size: 1.2vw;
   margin-bottom: 0px;
+  /* color: white; */
 }
-.room_name {
-  font-weight: bold;
-  color: #aa1e28;
+.hover {
+  /* font-weight: bold; */
+  color: white;
 }
 .extra_room_name {
   font-weight: bold;
 }
 .room.hover:hover .room_text {
   font-weight: bold;
-  /* background-color: pink; */
 }
 .The.Mitten {
   left: 77%;
@@ -394,5 +427,72 @@ export default class MapComponent extends Vue {
 #supply {
   left: 29.5%;
   bottom: 89%;
+}
+
+/* css for the table */
+.item {
+  margin-top: 1rem;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.details {
+  position: absolute;
+  z-index: 2;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  /* border-collapse: collapse; */
+  margin: auto;
+  font-size: 12px;
+  /* font-family: sans-serif; */
+  min-width: 100%;
+  /* box-shadow: 0 0 40px rgba(0, 0, 0, 0.35); */
+  text-align: center;
+}
+
+table th {
+  /* background-color: rgb(189, 0, 0); */
+  color: #ffffff;
+  /* font-size: large; */
+  padding: 12px 0px;
+  font-size: 4vw;
+  padding: 12px;
+  font-family: "Akrobat", Helvetica, Arial, sans-serif;
+}
+
+table td {
+  font-size: 2vw;
+  padding: 12px 0px;
+}
+
+table tr {
+  background-color: white;
+}
+
+table tr:hover {
+  color: rgb(189, 0, 0);
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 175%;
+  margin-bottom: 10px;
+}
+
+.background {
+  background-color: #aa1e28;
+  z-index: 1;
+  width: 100%;
+  height: 600px;
+  top: -45px;
 }
 </style>

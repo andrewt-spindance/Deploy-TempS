@@ -2,7 +2,9 @@
   <body class="home">
     <div>
       <div id="home_subtxt">
-        <div id="topline">{{ isShow ? "Top Three Warmest Temps" : "Top Three Coldest Temps" }}</div>
+        <div id="topline">
+          {{ isShow ? "Top Three Warmest Temps" : "Top Three Coldest Temps" }}
+        </div>
         <div class="ui buttons big">
           <button class="toggle" @click="isShow = !isShow">
             {{ isShow ? "Warm" : "Cold" }}
@@ -14,7 +16,8 @@
         <div
           class="circle row"
           v-for="room in meetingRoomColdArr"
-          :key="room.chipId.S">
+          :key="room.chipId.S"
+        >
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
@@ -26,8 +29,12 @@
               <div class="flip-card-back">
                 <div class="text" id="text">
                   <!-- <h1 class="room">{{ room.chipId }}</h1> -->
-                  <h6 class="temp">Temperature: {{ room.payload.M.temperature.N }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.payload.M.humidity.N }}%</h6>
+                  <h6 class="temp">
+                    Temperature: {{ room.payload.M.temperature.N }}°F
+                  </h6>
+                  <h6 class="humid">
+                    Humidity: {{ room.payload.M.humidity.N }}%
+                  </h6>
                   <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
                 </div>
               </div>
@@ -39,20 +46,25 @@
         <div
           class="circle row"
           v-for="room in meetingRoomHotArr"
-          :key="room.chipId.S">
+          :key="room.chipId.S"
+        >
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
                   <h1 class="name">{{ room.chipId.S }}</h1>
-                  <h4 class="temp">{{ room.payload.M.temperature.N  }}°F</h4>
+                  <h4 class="temp">{{ room.payload.M.temperature.N }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
                   <!-- <h1 class="room">{{ room.chipid }}</h1> -->
-                  <h6 class="temp">Temperature: {{ room.payload.M.temperature.N }}°F</h6>
-                  <h6 class="humid">Humidity: {{ room.payload.M.humidity.N}}%</h6>
+                  <h6 class="temp">
+                    Temperature: {{ room.payload.M.temperature.N }}°F
+                  </h6>
+                  <h6 class="humid">
+                    Humidity: {{ room.payload.M.humidity.N }}%
+                  </h6>
                   <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
                 </div>
               </div>
@@ -63,14 +75,13 @@
       <div class="behind_container">
         <div class="background"></div>
       </div>
-     
     </div>
   </body>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type  Room from '../datatypes';
+import type Room from "../datatypes";
 
 export default class MapComponent extends Vue {
   [x: string]: any;
@@ -82,87 +93,95 @@ export default class MapComponent extends Vue {
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
-    let roomArr =
-    [
+    let roomArr = [
       {
-        "chipId":{
-          "S": "Big Red"
+        chipId: {
+          S: "Big Red",
         },
-        "payload":{
-          "M": {
-            "temperature": {
-              "N": "74"
+        payload: {
+          M: {
+            temperature: {
+              N: "74",
             },
-              "humidity": {
-              "N": "0.6"
+            humidity: {
+              N: "0.6",
             },
-              "readingTime": {
-              "S": "2022-06-20T15:03:19.000Z"
-            }
-          }
+            readingTime: {
+              S: "2022-06-20T15:03:19.000Z",
+            },
+          },
         },
-        "timestamp": {
-          "N": "1655749562915"
-        }
+        timestamp: {
+          N: "1655749562915",
+        },
       },
       {
-        "chipId": {
-          "S": "Great Lakes"
+        chipId: {
+          S: "Great Lakes",
         },
-        "payload": {
-          "M": {
-            "temperature": {
-              "N": "64"
+        payload: {
+          M: {
+            temperature: {
+              N: "64",
             },
-              "humidity": {
-              "N": "24"
+            humidity: {
+              N: "24",
             },
-              "readingTime": {
-              "S": "2022-05-18T19:33:11.000Z"
-            }
-          }
+            readingTime: {
+              S: "2022-05-18T19:33:11.000Z",
+            },
+          },
         },
-          "timestamp": {
-          "N": "9001"
-        }
+        timestamp: {
+          N: "9001",
+        },
       },
       {
-        "chipId":{
-          "S": "Hope"
+        chipId: {
+          S: "Hope",
         },
-        "payload":{
-          "M": {
-            "temperature": {
-              "N": "80"
+        payload: {
+          M: {
+            temperature: {
+              N: "80",
             },
-              "humidity": {
-              "N": "30"
+            humidity: {
+              N: "30",
             },
-              "readingTime": {
-              "S": "2022-06-20T15:03:19.000Z"
-            }
-          }
+            readingTime: {
+              S: "2022-06-20T15:03:19.000Z",
+            },
+          },
         },
-        "timestamp": {
-          "N": "1655749562915"
-        }
+        timestamp: {
+          N: "1655749562915",
+        },
       },
-    ]
-
+    ];
 
     this.sortTemps(roomArr);
-  
   }
 
   sortTemps(roomArr: Room[]): void {
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
 
-    this.meetingRoomColdArr.sort((a, b) => parseInt(a.payload.M.temperature.N) - parseInt(b.payload.M.temperature.N)).splice(3);
+    this.meetingRoomColdArr
+      .sort(
+        (a, b) =>
+          parseInt(a.payload.M.temperature.N) -
+          parseInt(b.payload.M.temperature.N)
+      )
+      .splice(3);
 
-    this.meetingRoomHotArr.sort((a, b) => parseInt(b.payload.M.temperature.N) - parseInt(a.payload.M.temperature.N)).splice(3);
+    this.meetingRoomHotArr
+      .sort(
+        (a, b) =>
+          parseInt(b.payload.M.temperature.N) -
+          parseInt(a.payload.M.temperature.N)
+      )
+      .splice(3);
   }
-
 }
 </script>
 
@@ -175,7 +194,7 @@ body {
 #topline {
   font-size: 14px;
   font-weight: 700;
-  color: #58595B;
+  color: #58595b;
   line-height: 1.3;
   text-transform: uppercase;
   padding-left: 30px;
@@ -184,7 +203,7 @@ body {
 #home_subtxt {
   display: flex;
   justify-content: space-between;
-  margin-top:20px;
+  margin-top: 20px;
   z-index: 2;
   /* top: 20px; */
 }
@@ -272,10 +291,9 @@ body {
   border-color: white;
   color: white;
   font-size: 12px;
-  }
+}
 
 button {
   border-radius: 15%;
-} 
-
+}
 </style>

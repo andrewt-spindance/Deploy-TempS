@@ -1,43 +1,40 @@
 <script setup lang="ts">
-import RoomTable from '@/components/RoomTableComp.vue'
-import RoomView from '@/components/Room.vue'
+import RoomTable from "@/components/RoomTableComp.vue";
+import RoomView from "@/components/Room.vue";
+import Room2 from "@/components/Room copy.vue";
 
+// export default {
+//   components: {
+//     RoomView,
+//     RoomTable: RoomTable,
+//   },
+// };
 </script>
 
-<template>
-  <!-- <button class="toggle" @click="isTable = !isTable">
-    {{ isTable ? "Warm" : "Cold" }}
-  </button> -->
-
-  <!-- <RoomView></RoomView> -->
-  <RoomTable></RoomTable>
-
-  <!-- <div class="container">
-    <RoomView></RoomView>
-    <div class="rooms">
-      <div class="room" id="mitten">
-        <p class="room_name">The Mitten </p>
-        <p class="hover">Temperature: <br> Humidity:</p>
-      </div>
-      <div class="room" id="personal">
-        <p class="room_name">Personal </p>
-        <p class="hover">Temperature: <br> Humidity:</p>
-      </div>
-    </div>
-  </div> -->
-</template>
-
-<!-- <script setup lang="ts">
-  import RoomTable from '@/components/RoomTableComp.vue'
-  import RoomView from '@/components/Room.vue'
-  import { Vue } from "vue-property-decorator";
-  
-  export default {
-    isShow = false,
-    isTable = true
-  }
+<!-- ">
+import RoomTable from "@/components/RoomTableComp.vue";
+import RoomView from "@/components/Room.vue";
+// import { Vue } from "vue-property-decorator";
+// export default class MapsComponent extends Vue {}
 </script> -->
 
-<style>
+<template>
+  <!-- <button class="toggle" @click="isShow = !isShow">
+    {{ isShow ? "Warm" : "Cold" }}
+  </button> -->
+  <!-- <button class="ui button toggle" @click="toggle">OFF</button> -->
 
-</style>
+  <!-- <component is="Room"></component> -->
+
+  <Room2></Room2>
+  <!-- <RoomView></RoomView>
+  <RoomTable></RoomTable> -->
+
+  <!-- <RoomTable></RoomTable> -->
+</template>
+<!-- <script lang="ts">
+import RoomTable from "@/components/RoomTableComp.vue";
+import RoomView from "@/components/Room.vue";
+</script> -->
+
+<style></style>

@@ -21,12 +21,10 @@ import { RouterLink, RouterView } from 'vue-router'
       </div>
       <!-- <RouterView class="menu"/> -->
       <div class="top_head">
-        <!-- <a href="./App.vue"> -->
           <div class="head">
             <img id="logo" src="./assets/2018.jpg" height="75">
             <h1 class = "title"> TempS </h1>
           </div>
-        <!-- </a> -->
         <button id="login">Login</button>
       </div>
     </div>

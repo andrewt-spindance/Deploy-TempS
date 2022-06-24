@@ -34,19 +34,13 @@
         :class="[room.chipId.S, 'hover', 'room']"
         :key="room.chipId.S"
       >
-        <div class="room_front">
-          <p class="room_name room_text">{{ room.chipId.S }}</p>
-          <p class="temp">{{ room.payload.M.temperature.N }}°F</p>
-        </div>
-        <div class="room_back">
-          <p class="room_name room_text">{{ room.chipId.S }}</p>
-          <p class="room_temp room_text">
-            Temp: {{ room.payload.M.temperature.N }}°F
-          </p>
-          <p class="room_humid room_text">
-            Humidity: {{ room.payload.M.humidity.N }}%
-          </p>
-        </div>
+        <p class="room_name room_text">{{ room.chipId.S }}</p>
+        <p class="room_temp room_text">
+          Temp: {{ room.payload.M.temperature.N }}°F
+        </p>
+        <p class="room_humid room_text">
+          Humidity: {{ room.payload.M.humidity.N }}%
+        </p>
       </div>
 
       <div class="room" id="studio">
@@ -319,19 +313,6 @@ button {
   padding: 0px;
   z-index: 2;
 }
-
-.room_front .temp {
-  margin-bottom: 0;
-  font-size: 1.7vw;
-}
-
-.room:hover .room_front {
-  display: none;
-}
-
-.room:hover .room_back {
-  display: contents;
-}
 .room_text {
   font-size: 1.2vw;
   margin-bottom: 0px;
@@ -348,13 +329,13 @@ button {
   font-weight: bold;
 }
 .The.Mitten {
-  left: 77.5%;
+  left: 77%;
   bottom: 56%;
   height: 13%;
   width: 14%;
 }
 .Great.Lakes {
-  left: 57%;
+  left: 56.7%;
   bottom: 70%;
   height: 22%;
   width: 13%;
@@ -379,7 +360,6 @@ button {
   bottom: 61%;
   width: 7.5%;
 }
-
 .Calvin .room_text,
 .Hope .room_text {
   font-size: 0.8vw;
@@ -388,9 +368,7 @@ button {
   left: 29.2%;
   bottom: 67.5%;
   width: 7.5%;
-  margin-bottom: 0;
 }
-
 .Euchre {
   left: 29.2%;
   bottom: 74%;
@@ -528,9 +506,5 @@ h2 {
   width: 100%;
   height: 600px;
   top: -45px;
-}
-
-.room_back {
-  display: none;
 }
 </style>

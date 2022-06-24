@@ -1,6 +1,6 @@
 <template>
   <body class="home">
-    <div>
+    <div class="all">
       <div id="home_subtxt">
         <div id="topline">
           {{ isShow ? "Top Three Warmest Temps" : "Top Three Coldest Temps" }}
@@ -9,6 +9,9 @@
           <button class="toggle" @click="isShow = !isShow">
             {{ isShow ? "Warm" : "Cold" }}
           </button>
+          <router-link :to="{ path: 'ViewAll' }"
+            ><button class="viewall">View All</button></router-link
+          >
         </div>
       </div>
 
@@ -74,6 +77,9 @@
       </div>
       <div class="behind_container">
         <div class="background"></div>
+        <!-- <router-link :to="{ path: 'ViewAll' }"
+          ><button class="viewall">View All</button></router-link
+        > -->
       </div>
     </div>
   </body>
@@ -188,7 +194,7 @@ export default class MapComponent extends Vue {
 <style scoped>
 body {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 #topline {
@@ -275,14 +281,17 @@ body {
   border: solid 12px rgb(209, 211, 212);
   transform: rotateY(180deg);
 }
-
+.behind_container {
+  width: 100%;
+  height: 50vw;
+}
 .background {
   background-color: #aa1e28;
   z-index: 1;
   width: 50%;
   height: 400px;
   position: absolute;
-  top: -50px;
+  top: -40px;
   right: 0px;
 }
 
@@ -295,5 +304,20 @@ body {
 
 button {
   border-radius: 15%;
+}
+
+.viewall {
+  z-index: 3;
+  /* position: relative; */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  align-items: flex-end;
 }
 </style>

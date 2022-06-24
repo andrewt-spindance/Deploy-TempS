@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import Circles from '@/components/Circles.vue'
-import RoomBlock from '@/components/RoomBlockComp.vue'
+import Circles from "@/components/Circles.vue";
 </script>
 
 <template>
   <circles></circles>
   <!-- <button class="viewall">View All</button> -->
-  <router-link :to="{ path: 'ViewAll' }"><button class="viewall">View All</button></router-link>
+  <!-- <router-link :to="{ path: 'ViewAll' }"><button class="viewall">View All</button></router-link> -->
 </template>
 
 <style>

@@ -13,7 +13,7 @@
           <th>Time</th>
           <th>Humidity</th>
           <th>Temperature</th>
-          <tr v-for="room in meetingRooms" :key="room.name">
+          <tr v-for="room in results" :key="room.name">
             <td>{{ room.name }}</td>
             <td>{{ room.timestamp }}</td>
             <td>{{ room.humidity }}%</td>
@@ -30,7 +30,7 @@
     <div class="rooms" v-show="isShow">
       <img id="floor" src="../assets/coloredfloorplan.png" />
       <div
-        v-for="room in meetingRooms"
+        v-for="room in results"
         :class="[room.name, 'hover', 'room']"
         :key="room.name"
       >
@@ -105,7 +105,7 @@ import type { AxiosResponse } from "axios";
 
 export default class ViewAll extends Vue {
   results: Array<room> = [];
-  meetingRooms: Array<room> = [];
+  // meetingRooms: Array<room> = [];
   isShow = false;
 
   mounted(): void {
@@ -134,12 +134,12 @@ export default class ViewAll extends Vue {
           console.log(this.results[i]);
         }
       });
-    this.sortTemps(this.results);
+    // this.sortTemps(this.results);
   }
 
-  sortTemps(roomArr: room[]): void {
-    this.meetingRooms = [...roomArr];
-  }
+  // sortTemps(roomArr: room[]): void {
+  //   this.meetingRooms = [...roomArr];
+  // }
 }
 
 // export default class MapComponent extends Vue {

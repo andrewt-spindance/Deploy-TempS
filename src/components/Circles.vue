@@ -100,7 +100,7 @@ export default class ViewAll extends Vue {
         console.log(rooms.length);
         for (let i = 0; i < rooms.length; i++) {
           let tmp: room;
-          console.log(rooms[i]);
+          // console.log(rooms[i]);
 
           this.results.push({
             name: rooms[i].chipId.S,
@@ -108,14 +108,14 @@ export default class ViewAll extends Vue {
             humidity: rooms[i].payload.M.humidity.N,
             timestamp: rooms[i].payload.M.readingTime.S,
           });
+          this.sortTemps(this.results);
         }
 
-        for (let i = 0; i < this.results.length; i++) {
-          console.log("hey");
-          console.log(this.results[i]);
-        }
+        // for (let i = 0; i < this.results.length; i++) {
+        //   console.log("hey");
+        //   console.log(this.results[i]);
+        // }
       });
-    this.sortTemps(this.results);
   }
 
   sortTemps(roomArr: room[]): void {

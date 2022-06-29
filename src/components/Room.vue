@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <body class="home">
     <div class="rooms">
       <img id="floor" src="../assets/coloredfloorplan.png" />
@@ -66,18 +66,18 @@
       </div>
     </div>
 
-    <!-- <div class='room' id="mitten">The Mitten</div> -->
+     <div class='room' id="mitten">The Mitten</div> 
   </body>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type Room from "../datatypes";
+import type { room } from "../datatypes";
 
 export default class MapComponent extends Vue {
   [x: string]: any;
 
-  meetingRooms: Array<Room> = [];
+  meetingRooms: Array<room> = [];
   // meetingRoomDisplay: Array<room> = [];
   isShow = false;
 
@@ -395,4 +395,4 @@ export default class MapComponent extends Vue {
   left: 29.5%;
   bottom: 89%;
 }
-</style>
+</style> -->

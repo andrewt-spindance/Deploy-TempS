@@ -1,24 +1,5 @@
 <script setup lang="ts">
-// import { Vue } from "vue-class-component";
-// import Vue from "vue";
 import { RouterLink, RouterView } from "vue-router";
-
-import GAuth from "vue-google-oauth2";
-// Vue.use(GAuth, { clientId: "117184943709978921122" });
-// export default {
-//   data: () => ({
-//     clientId: "cliend-id",
-//   }),
-//   methods: {
-//     OnGoogleAuthSuccess(idToken) {
-//       console.log(idToken);
-//       // Receive the idToken and make your magic with the backend
-//     },
-//     OnGoogleAuthFail(error) {
-//       console.log(error);
-//     },
-//   },
-// };
 </script>
 <template>
   <head>
@@ -35,15 +16,12 @@ import GAuth from "vue-google-oauth2";
         <label for="active" class="close"></label>
         <div class="wrapper">
           <ul>
-            <!-- <p>hi</p> -->
-            <!-- <li class="menu-item list_numb">001 -------</li> -->
             <li class="menu-item"><a href="./">Home</a></li>
             <li class="menu-item"><a href="/ViewAll">Current TempS</a></li>
-            <li class="menu-item"><a href="/Calender">Calendar</a></li>
           </ul>
+          <p id="help">If you have issues, contact admin@spindance.com</p>
         </div>
       </div>
-      <!-- <RouterView class="menu"/> -->
       <div class="top_head">
         <a class="link" href="./">
           <div class="head">
@@ -51,13 +29,9 @@ import GAuth from "vue-google-oauth2";
             <h1 class="title">TempS</h1>
           </div>
         </a>
-        <button id="login">Login</button>
-        <!-- <button class="google-signin-button">Continue with Google</button> -->
-        <!-- <GAuth></GAuth> -->
       </div>
     </div>
   </header>
-
   <RouterView class="comp" />
 </template>
 
@@ -71,7 +45,7 @@ import GAuth from "vue-google-oauth2";
   max-width: 1280px;
   padding: 1rem;
 }
-
+/* rules for header  */
 .head {
   display: flex;
   font-family: "Akrobat", Helvetica, Arial, sans-serif;
@@ -84,24 +58,17 @@ import GAuth from "vue-google-oauth2";
   justify-content: space-between;
 }
 
-#login {
-  font-size: 12px;
-  height: 25px;
-  margin-top: 12px;
-}
-
 #logo {
   width: 30px;
   height: 25px;
   margin-top: 13px;
 }
 
-/* These are rules for the menu */
+/* Rules for the menu */
 .wrapper {
   position: fixed;
   top: 0;
   left: -100%;
-  /* right: -100%; */
   height: 100%;
   width: 100%;
   background: linear-gradient(90deg, #450a0c, #aa1e28);
@@ -111,13 +78,11 @@ import GAuth from "vue-google-oauth2";
 
 #active:checked ~ .wrapper {
   left: 0;
-  /* right:0; */
 }
 
 .menu-btn {
   position: absolute;
   z-index: 4;
-  /* right: 20px; */
   left: 20px;
   top: 00px;
   height: 50px;
@@ -159,7 +124,7 @@ import GAuth from "vue-google-oauth2";
   transition: background 0.6s;
 }
 
-/* closing animation */
+/* Rules for closing animation */
 #active:checked + .menu-btn span {
   transform: scaleX(0);
 }
@@ -185,7 +150,6 @@ import GAuth from "vue-google-oauth2";
   height: 80%;
   transform: translate(-50%, -50%);
   list-style: none;
-  /* text-align: center; */
 }
 
 .wrapper ul li {
@@ -200,7 +164,6 @@ import GAuth from "vue-google-oauth2";
   padding: 5px 30px;
   color: #fff;
   border-radius: 50px;
-  /* position: absolute; */
   line-height: 50px;
   margin: 5px 30px;
   opacity: 0;
@@ -209,34 +172,15 @@ import GAuth from "vue-google-oauth2";
 }
 
 .wrapper ul li.list_numb {
-  /* text-decoration: none; */
   font-size: 12px;
   font-weight: 500;
   padding: 5px 30px;
   color: #fff;
-  /* border-radius: 50px; */
-  /* position: absolute; */
   line-height: 50px;
   margin: 5px 30px;
   opacity: 0;
-  /* transition: all 0.3s ease; */
   z-index: 4;
-  /* transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1); */
 }
-
-/* .wrapper ul li a:after {
-  position: absolute;
-  content: "";
-  background: #fff;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 50px;
-  transform: scaleY(0);
-  z-index: -1;
-  transition: transform 0.3s ease;
-} */
 
 .wrapper ul li a:hover:after {
   transform: scaleY(1);
@@ -287,7 +231,6 @@ input[type="checkbox"] {
   transform: translateX(-100px);
 }
 
-button#login,
 button {
   border-radius: 15%;
 }
@@ -302,9 +245,8 @@ a.link:hover {
   text-decoration: none;
 }
 
-/* .wrapper .list_numb {
-  z-index: 4;
-  color: white;
-  font: 12px;
-} */
+#help {
+  color: #202020;
+  float: right;
+}
 </style>

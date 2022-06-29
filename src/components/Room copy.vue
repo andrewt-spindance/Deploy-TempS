@@ -13,11 +13,11 @@
           <th>Time</th>
           <th>Humidity</th>
           <th>Temperature</th>
-          <tr v-for="room in meetingRooms" :key="room.chipId.S">
-            <td>{{ room.chipId.S }}</td>
-            <td>{{ room.payload.M.readingTime.S }}</td>
-            <td>{{ room.payload.M.humidity.N }}%</td>
-            <td>{{ room.payload.M.temperature.N }}°F</td>
+          <tr v-for="room in meetingRooms" :key="room.name">
+            <td>{{ room.name }}</td>
+            <td>{{ room.timestamp }}</td>
+            <td>{{ room.humidity }}%</td>
+            <td>{{ room.temperature }}°F</td>
           </tr>
         </table>
         <slot></slot>
@@ -31,21 +31,17 @@
       <img id="floor" src="../assets/coloredfloorplan.png" />
       <div
         v-for="room in meetingRooms"
-        :class="[room.chipId.S, 'hover', 'room']"
-        :key="room.chipId.S"
+        :class="[room.name, 'hover', 'room']"
+        :key="room.name"
       >
         <div class="room_front">
-          <p class="room_name room_text">{{ room.chipId.S }}</p>
-          <p class="temp">{{ room.payload.M.temperature.N }}°F</p>
+          <p class="room_name room_text">{{ room.name }}</p>
+          <p class="temp">{{ room.temperature }}°F</p>
         </div>
         <div class="room_back">
-          <p class="room_name room_text">{{ room.chipId.S }}</p>
-          <p class="room_temp room_text">
-            Temp: {{ room.payload.M.temperature.N }}°F
-          </p>
-          <p class="room_humid room_text">
-            Humidity: {{ room.payload.M.humidity.N }}%
-          </p>
+          <p class="room_name room_text">{{ room.name }}</p>
+          <p class="room_temp room_text">Temp: {{ room.temperature }}°F</p>
+          <p class="room_humid room_text">Humidity: {{ room.humidity }}%</p>
         </div>
       </div>
 
@@ -98,190 +94,69 @@
         <p class="extra_room_name room_text">Supply Closet</p>
       </div>
     </div>
-
-    <!-- <div class='room' id="mitten">The Mitten</div> -->
   </body>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type Room from "../datatypes";
+import type { room } from "../datatypes";
 
 export default class MapComponent extends Vue {
   [x: string]: any;
 
-  meetingRooms: Array<Room> = [];
-  // meetingRoomDisplay: Array<room> = [];
+  meetingRooms: Array<room> = [];
   isShow = false;
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
     let roomArr = [
       {
-        chipId: { S: "Big Red" },
-        payload: {
-          M: {
-            temperature: { N: "74" },
-            humidity: { N: "0.6" },
-            readingTime: { S: "2022-06-20T15:03:19.000Z" },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Big Red",
+        temperature: 74,
+        humidity: 0.6,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "Great Lakes",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "64",
-            },
-            humidity: {
-              N: "24",
-            },
-            readingTime: {
-              S: "2022-05-18T19:33:11.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "9001",
-        },
+        name: "Great Lakes",
+        temperature: 64,
+        humidity: 0.7,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "Hope",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "80",
-            },
-            humidity: {
-              N: "30",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Hope",
+        temperature: 80,
+        humidity: 0.6,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "The Mitten",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "76",
-            },
-            humidity: {
-              N: "10",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Isle Royale",
+        temperature: 84,
+        humidity: 40,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "Isle Royale",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "84",
-            },
-            humidity: {
-              N: "40",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Calvin",
+        temperature: 50,
+        humidity: 30,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "Calvin",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "50",
-            },
-            humidity: {
-              N: "30",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Euchre",
+        temperature: 47,
+        humidity: 80,
+        timestamp: 3,
       },
       {
-        chipId: {
-          S: "Euchre",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "47",
-            },
-            humidity: {
-              N: "80",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
-      },
-      {
-        chipId: {
-          S: "Sleeping Bear",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "68",
-            },
-            humidity: {
-              N: "86",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Sleeping Bear",
+        temperature: 68,
+        humidity: 86,
+        timestamp: 3,
       },
     ];
     this.sortTemps(roomArr);
   }
 
-  sortTemps(roomArr: Room[]): void {
+  sortTemps(roomArr: room[]): void {
     this.meetingRooms = [...roomArr];
   }
 }
@@ -293,11 +168,9 @@ button {
   font-size: 12px;
   height: 25px;
   margin-top: 12px;
-  /* float: right; */
 }
 
 .button {
-  /* display: flex; */
   text-align: right;
   z-index: 2;
 }
@@ -306,7 +179,6 @@ button {
   height: 60vw;
   width: 90vw;
   z-index: 1;
-  /* position: relative;  */
 }
 .rooms {
   height: 60vw;
@@ -335,10 +207,8 @@ button {
 .room_text {
   font-size: 1.2vw;
   margin-bottom: 0px;
-  /* color: white; */
 }
 .hover {
-  /* font-weight: bold; */
   color: white;
 }
 .extra_room_name {
@@ -484,19 +354,14 @@ button {
 }
 
 table {
-  /* border-collapse: collapse; */
   margin: auto;
   font-size: 12px;
-  /* font-family: sans-serif; */
   min-width: 100%;
-  /* box-shadow: 0 0 40px rgba(0, 0, 0, 0.35); */
   text-align: center;
 }
 
 table th {
-  /* background-color: rgb(189, 0, 0); */
   color: #ffffff;
-  /* font-size: large; */
   padding: 12px 0px;
   font-size: 4vw;
   padding: 12px;

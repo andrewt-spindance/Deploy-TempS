@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/gapi": "^0.0.42",
+    "axios": "^0.27.2",
     "googleapis": "^100.0.0",
     "vue": "^3.2.33",
     "vue-class-component": "^8.0.0-rc.1",

@@ -2,8 +2,13 @@
   <body class="home">
     <div class="all">
       <div id="home_subtxt">
-        <div id="topline">
-          {{ isShow ? "Top Three Warmest Temps" : "Top Three Coldest Temps" }}
+        <div id="left_info">
+          <div id="topline">
+            {{ isShow ? "Top Three Warmest Temps" : "Top Three Coldest Temps" }}
+          </div>
+          <!-- <p id="time">
+            Last updated: {{ meetingRoomColdArr[1].payload.M.readingTime.S }}
+          </p> -->
         </div>
         <div class="ui buttons big">
           <button class="toggle" @click="isShow = !isShow">
@@ -19,56 +24,45 @@
         <div
           class="circle row"
           v-for="room in meetingRoomColdArr"
-          :key="room.chipId.S"
+          :key="room.name"
         >
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.chipId.S }}</h1>
-                  <h4 class="temp">{{ room.payload.M.temperature.N }}°F</h4>
+                  <h1 class="name">{{ room.name }}</h1>
+                  <h4 class="temp">{{ room.temperature }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
-                  <!-- <h1 class="room">{{ room.chipId }}</h1> -->
-                  <h6 class="temp">
-                    Temperature: {{ room.payload.M.temperature.N }}°F
-                  </h6>
-                  <h6 class="humid">
-                    Humidity: {{ room.payload.M.humidity.N }}%
-                  </h6>
-                  <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
+                  <h6 class="temp">Temperature: {{ room.temperature }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.humidity }}%</h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="circles hot" v-show="isShow">
         <div
           class="circle row"
           v-for="room in meetingRoomHotArr"
-          :key="room.chipId.S"
+          :key="room.name"
         >
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <div class="text">
-                  <h1 class="name">{{ room.chipId.S }}</h1>
-                  <h4 class="temp">{{ room.payload.M.temperature.N }}°F</h4>
+                  <h1 class="name">{{ room.name }}</h1>
+                  <h4 class="temp">{{ room.temperature }}°F</h4>
                 </div>
               </div>
               <div class="flip-card-back">
                 <div class="text" id="text">
-                  <!-- <h1 class="room">{{ room.chipid }}</h1> -->
-                  <h6 class="temp">
-                    Temperature: {{ room.payload.M.temperature.N }}°F
-                  </h6>
-                  <h6 class="humid">
-                    Humidity: {{ room.payload.M.humidity.N }}%
-                  </h6>
-                  <h6 class="time">{{ room.payload.M.readingTime.S }}</h6>
+                  <h6 class="temp">Temperature: {{ room.temperature }}°F</h6>
+                  <h6 class="humid">Humidity: {{ room.humidity }}%</h6>
                 </div>
               </div>
             </div>
@@ -77,9 +71,6 @@
       </div>
       <div class="behind_container">
         <div class="background"></div>
-        <!-- <router-link :to="{ path: 'ViewAll' }"
-          ><button class="viewall">View All</button></router-link
-        > -->
       </div>
     </div>
   </body>
@@ -87,105 +78,51 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type Room from "../datatypes";
+import type { room } from "../datatypes";
 
 export default class MapComponent extends Vue {
   [x: string]: any;
 
-  meetingRoomColdArr: Array<Room> = [];
-  meetingRoomHotArr: Array<Room> = [];
-  // meetingRoomDisplay: Array<room> = [];
+  meetingRoomColdArr: Array<room> = [];
+  meetingRoomHotArr: Array<room> = [];
   isShow = false;
 
   mounted() {
     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
     let roomArr = [
       {
-        chipId: {
-          S: "Big Red",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "74",
-            },
-            humidity: {
-              N: "0.6",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Big Red",
+        temperature: 74,
+        humidity: 0.6,
+        timestamp: 2,
       },
       {
-        chipId: {
-          S: "Great Lakes",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "64",
-            },
-            humidity: {
-              N: "24",
-            },
-            readingTime: {
-              S: "2022-05-18T19:33:11.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "9001",
-        },
+        name: "Great Lakes",
+        temperature: 74,
+        humidity: 0.6,
+        timestamp: 2,
       },
       {
-        chipId: {
-          S: "Hope",
-        },
-        payload: {
-          M: {
-            temperature: {
-              N: "80",
-            },
-            humidity: {
-              N: "30",
-            },
-            readingTime: {
-              S: "2022-06-20T15:03:19.000Z",
-            },
-          },
-        },
-        timestamp: {
-          N: "1655749562915",
-        },
+        name: "Hope",
+        temperature: 74,
+        humidity: 0.6,
+        timestamp: 4,
       },
     ];
 
     this.sortTemps(roomArr);
   }
 
-  sortTemps(roomArr: Room[]): void {
+  sortTemps(roomArr: room[]): void {
     this.meetingRoomColdArr = [...roomArr];
     this.meetingRoomHotArr = [...roomArr];
 
     this.meetingRoomColdArr
-      .sort(
-        (a, b) =>
-          parseInt(a.payload.M.temperature.N) -
-          parseInt(b.payload.M.temperature.N)
-      )
+      .sort((a, b) => a.temperature - b.temperature)
       .splice(3);
 
     this.meetingRoomHotArr
-      .sort(
-        (a, b) =>
-          parseInt(b.payload.M.temperature.N) -
-          parseInt(a.payload.M.temperature.N)
-      )
+      .sort((a, b) => b.temperature - a.temperature)
       .splice(3);
   }
 }
@@ -206,6 +143,26 @@ body {
   padding-left: 30px;
 }
 
+#left_info {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  /* align-items: flex-end; */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  align-items: flex-end;
+}
+
 #home_subtxt {
   display: flex;
   justify-content: space-between;
@@ -219,7 +176,11 @@ body {
   position: relative;
   margin: 10px;
 }
-
+#time {
+  float: left;
+  color: pink;
+  z-index: 5;
+}
 .circles {
   position: absolute;
   display: flex;
@@ -309,15 +270,5 @@ button {
 .viewall {
   z-index: 3;
   /* position: relative; */
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  width: 100%;
-  justify-content: space-between;
-  position: absolute;
-  align-items: flex-end;
 }
 </style>

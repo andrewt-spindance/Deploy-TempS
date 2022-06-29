@@ -37,6 +37,6 @@ import TheRooms from "@/components/TheRoom.vue";
 // }
 </script>
 
-<template><theRooms></theRooms>></template>
+<template><TheRooms></TheRooms></template>
 
 <style></style>

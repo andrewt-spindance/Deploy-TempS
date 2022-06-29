@@ -100,66 +100,107 @@
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 import type { room } from "../datatypes";
+import axios from "axios";
+import type { AxiosResponse } from "axios";
 
-export default class MapComponent extends Vue {
-  [x: string]: any;
-
+export default class ViewAll extends Vue {
+  results: Array<room> = [];
   meetingRooms: Array<room> = [];
   isShow = false;
 
-  mounted() {
-    //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
-    let roomArr = [
-      {
-        name: "Big Red",
-        temperature: 74,
-        humidity: 0.6,
-        timestamp: 3,
-      },
-      {
-        name: "Great Lakes",
-        temperature: 64,
-        humidity: 0.7,
-        timestamp: 3,
-      },
-      {
-        name: "Hope",
-        temperature: 80,
-        humidity: 0.6,
-        timestamp: 3,
-      },
-      {
-        name: "Isle Royale",
-        temperature: 84,
-        humidity: 40,
-        timestamp: 3,
-      },
-      {
-        name: "Calvin",
-        temperature: 50,
-        humidity: 30,
-        timestamp: 3,
-      },
-      {
-        name: "Euchre",
-        temperature: 47,
-        humidity: 80,
-        timestamp: 3,
-      },
-      {
-        name: "Sleeping Bear",
-        temperature: 68,
-        humidity: 86,
-        timestamp: 3,
-      },
-    ];
-    this.sortTemps(roomArr);
+  mounted(): void {
+    axios
+      .request({
+        method: "GET",
+        url: "https://xz2anw50qb.execute-api.us-east-1.amazonaws.com/prod/",
+      })
+      .then((response: AxiosResponse) => response.data)
+      .then((data: any) => {
+        let rooms = data.body;
+        console.log(rooms.length);
+        for (let i = 0; i < rooms.length; i++) {
+          let tmp: room;
+          console.log(rooms[i]);
+
+          this.results.push({
+            name: rooms[i].chipId.S,
+            temperature: rooms[i].payload.M.temperature.N,
+            humidity: rooms[i].payload.M.humidity.N,
+            timestamp: rooms[i].payload.M.readingTime.S,
+          });
+        }
+
+        for (let i = 0; i < this.results.length; i++) {
+          console.log(this.results[i]);
+        }
+      });
+    this.sortTemps(this.results);
   }
 
   sortTemps(roomArr: room[]): void {
     this.meetingRooms = [...roomArr];
   }
 }
+
+// export default class MapComponent extends Vue {
+//   [x: string]: any;
+
+//   meetingRooms: Array<room> = [];
+//   isShow = false;
+
+//   mounted() {
+//     //get temp data from db will go here for now but eventually move to its own component to be used by roomBlocks and RoomsComp.
+//     let roomArr = [
+//       {
+//         name: "Big Red",
+//         temperature: 74,
+//         humidity: 0.6,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Great Lakes",
+//         temperature: 64,
+//         humidity: 0.7,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Hope",
+//         temperature: 80,
+//         humidity: 0.6,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Isle Royale",
+//         temperature: 84,
+//         humidity: 40,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Calvin",
+//         temperature: 50,
+//         humidity: 30,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Euchre",
+//         temperature: 47,
+//         humidity: 80,
+//         timestamp: 3,
+//       },
+//       {
+//         name: "Sleeping Bear",
+//         temperature: 68,
+//         humidity: 86,
+//         timestamp: 3,
+//       },
+//     ];
+//     this.sortTemps(roomArr);
+//   }
+
+//   sortTemps(roomArr: room[]): void {
+//     this.meetingRooms = [...roomArr];
+//   }
+// }
 </script>
 
 <style scoped>
